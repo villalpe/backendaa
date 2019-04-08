@@ -31,12 +31,12 @@ import { KeeperComponent } from './components/keeper/keeper.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    HttpModule,
     FormsModule,
     EditorModule,
     ModuloEmailModule,
     AdminModule,
-    HttpModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
