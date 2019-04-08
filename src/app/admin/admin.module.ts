@@ -7,16 +7,18 @@ import { HttpClientModule } from '@angular/http';
 //Importar nuestro nuevo modulo
 import { AdminModuleComponent } from './admin/components/admin.module';
 
-import { AdminAddComponent } from './components/add/add.component';
-import { AdminListComponent } from './components/list/list.component';
-import { AdminShowComponent } from './components/show/show.component';
+import { MainComponent } from './components/main/main.component';
+import { AddComponent } from './components/add/add.component';
+import { ListComponent } from './components/list/list.component';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminAddComponent,
-    AdminListComponent,
-    AdminShowComponent
+    MainComponent,
+    AddComponent,
+    ListComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

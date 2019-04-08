@@ -1,21 +1,20 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements DoCheck, OnInit {
+export class AppComponent {
   title = 'NGZOO';
-  emailContacto: string;
 
   ngOnInit(){
   //Vamos a recoger la variable que esta en el localStorage
-  	this.emailContacto = localStorage.getItem('emailContacto')
+  	//this.emailContacto = localStorage.getItem('emailContacto')
 	//console.log(localStorage.getItem('emailContacto'));
   }
   //Este metodo se lanza despues del OnInit y despues tambien del OnChanges. Cada vez que hay un cambio en angular
-  ngDoCheck(){
+  /*ngDoCheck(){
   	//Al poner el getItme del localStorage en este metodo actualizamos el valor que damos en Contact
   	this.emailContacto = localStorage.getItem('emailContacto')
   }
@@ -24,5 +23,5 @@ export class AppComponent implements DoCheck, OnInit {
   	localStorage.removeItem('emailContacto');
   	localStorage.clear();
   	this.emailContacto = null;
-  }
+  }*/
 }

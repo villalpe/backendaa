@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'admin-list',
   templateUrl: './list.component.html'
 })
-export class AppComponent {
-  title = 'Admin List';
+export class ListComponent {
+  title = 'Listing';
 }
