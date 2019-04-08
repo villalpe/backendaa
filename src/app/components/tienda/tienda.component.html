@@ -1,0 +1,43 @@
+<p>Utilizar jQuery dentro de Angular</p>
+<button id="botonjq" type='button'>
+	<span class="ui-button-text">Mostrar</span>	
+</button>
+<p id="textojq" class="alert alert-warning">
+	Web workers turn the mobile and desktop browser environments into application platforms, providing them with a strict execution environment. This strictness may force us to provide for the copying of objects between multiple threads, and to plan our applications with these constraints in mind.
+</p>
+<!--Aqui vamos a usar Tinymce para editor de texto-->
+<editor apiKey="test" [init]="{plugins: 'table'}" [(ngModel)]="dataModel"></editor>
+{{dataModel}}
+<hr>
+Padre:
+<hr>
+<h2>
+{{titulo}}
+</h2>
+<ul>
+	<li>Camiseta Rosa</li>
+	<li>Gorra Negra</li>
+	<li>Pantalon de Mesclilla</li>
+<p>
+	<input type="text" [(ngModel)]="nombreDelParque" (keyup)="mostrarNombre()" />
+</p>	
+</ul>
+<p>
+Resultado: {{nombreDelParque}}
+</p>
+
+<div *ngIf="miParque">
+	<h4>Datos Parque desde componente Hijo</h4>
+<ol>
+		<li>{{miParque.nombre}}</li>
+		<li>{{miParque.tipo}}</li>
+		<li>{{miParque.area}}</li>
+		<li>{{miParque.abierto}}</li>
+</ol>
+</div>
+<hr>
+Hijo:
+<p *ngIf="nombreDelParque">
+	<parques [nombre]="this.nombreDelParque" 
+			 [area]="4679" (PasameElParque)="verDatosParque($event)"></parques>
+</p>

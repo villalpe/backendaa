@@ -1,0 +1,16 @@
+<p>
+  {{title}}
+</p>
+<div>  
+  <ol>
+  	<li>Nombre: {{nombre}}</li>
+  	<li>Tipo: {{tipo}}</li>
+  	<li>Area del parque: {{area}}</li>
+  	<li *ngIf="abierto;else cerrado">Abierto</li>
+  	<ng-template #cerrado>
+  		Cerrado
+	</ng-template>
+	<button (click)="mandarDatos()">Mandar datos a Padre</button>
+  </ol>
+ </div> 
+

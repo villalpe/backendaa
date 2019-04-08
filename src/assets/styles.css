@@ -1,0 +1,27 @@
+.navbar-nav{
+	flex-direction: row;
+}
+
+body > app-root > div > nav > div > ul > li{
+	margin-left: 15px;
+}
+
+.navigation.col-lg-12{
+	margin-top: 10px;
+}
+
+.jumbotron{
+	padding: 40px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 1px #ccc;
+}
+
+.btn.btn-primary.btn-lg,
+.btn.btn-success.btn-lg,
+.btn.btn-success.btn-lg {
+	margin-right: 4px;
+}
+
+.navbar-nav .actived{
+	border-bottom: 2px solid orange;
+}
