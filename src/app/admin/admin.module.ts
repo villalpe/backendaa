@@ -2,32 +2,39 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { HttpClientModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 
-//Importar nuestro nuevo modulo
-import { AdminModuleComponent } from './admin/components/admin.module';
+//Importar nuestro nuevo modulo de rutas
+import { AdminRoutingModule } from './admin-routing.module';
 
 import { MainComponent } from './components/main/main.component';
 import { AddComponent } from './components/add/add.component';
 import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     MainComponent,
     AddComponent,
     ListComponent,
-    EditComponent
+    EditComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     EditorModule,
-    AdminModuleComponent
+    AdminRoutingModule,
+    HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  exports: [  
+    MainComponent,
+    AddComponent,
+    ListComponent,
+    EditComponent,
+    ErrorComponent
+    ]
 })
 export class AdminModule { }

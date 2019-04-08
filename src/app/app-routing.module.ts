@@ -10,7 +10,6 @@ import { ContactComponent } from './components/contact/contact.component';
 import { KeeperComponent } from './components/keeper/keeper.component';
 
 const routes: Routes = [
-{path: '', component: TiendaComponent},
 	{path: '', component: HomeComponent},
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
 	{path: 'home', component: HomeComponent},
