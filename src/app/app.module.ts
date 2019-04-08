@@ -5,6 +5,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 
 //Importar nuestro nuevo modulo
 import { ModuloEmailModule } from './moduloemail/components/moduloemail.module';
+import { AdminModule } from '.admin/components/admin.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +33,8 @@ import { KeeperComponent } from './components/keeper/keeper.component';
     AppRoutingModule,
     FormsModule,
     EditorModule,
-    ModuloEmailModule
+    ModuloEmailModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
