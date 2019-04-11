@@ -11,7 +11,8 @@ var User = require('../models/user');
 
 //Acciones
 function pruebas(req, res){
-	res.status(200).send({message: "Probando el controlador en metodo pruebas..."});
+	res.status(200).send({message: "Probando el controlador en metodo pruebas...", user: req.user});
+
 }
 
 function saveUser(req, res){
