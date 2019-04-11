@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { HttpModule } from '@angular/http';
 
-//Importar nuestro nuevo modulo
+//Importar nuestros modulos - Importante en imports: ponerlos antes del AppRoutingModule
 import { ModuloEmailModule } from './moduloemail/components/moduloemail.module';
 import { AdminModule } from './admin/admin.module';
 

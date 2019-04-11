@@ -11,12 +11,13 @@ const adminRoutes: Routes = [
 	{	path: 'admin-panel', 
 		component: MainComponent, 
 		children: [
-		/*{path: '', redirectTo: 'admin-panel', pathMatch: 'full'},*/
+			{path: '', redirectTo: 'listado', pathMatch: 'full'},
+			{path: 'listado', component: ListComponent},
 			{path: 'crear', component: AddComponent},
-			{path: 'editar', component: EditComponent},
-			{path: 'listar', component: ListComponent}
+			{path: 'editar', component: EditComponent}
 		]
-	}
+	},
+	{path: 'listado-del-panel', component: ListComponent},
 ];
 
 @NgModule({

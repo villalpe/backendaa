@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './list.component.html'
 })
 export class ListComponent {
-  title = 'Listing';
+  title = 'Listado';
+  numbers = new Array(8);
 }

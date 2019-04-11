@@ -25,3 +25,21 @@ body > app-root > div > nav > div > ul > li{
 .navbar-nav .actived{
 	border-bottom: 2px solid orange;
 }
+
+.boton_transiciones{
+	padding: 10px;
+	background: red;
+	color: white;
+	border-radius: 20px;
+	border: 4px solid green;
+	transition: all 2s;
+}
+
+.boton_transiciones:hover{
+	text-decoration: none;
+	color: white;
+	cursor: pointer;
+	border-radius: 2px;
+	background: #ccc;
+	border: 1px solid black;
+}
