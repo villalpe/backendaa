@@ -3,6 +3,9 @@
 //bcrypt para cifrar contraseñas
 var bcrypt = require('bcrypt-nodejs');
 
+//importar servicio de jwt y luego lo ponemos en el metodo login
+var jwt = require('../services/jwt');
+
 //Cargar modelos
 var User = require('../models/user');
 
@@ -74,7 +77,14 @@ function login(req, res){
 			if(user){
 				bcrypt.compare(password, user.password, (err, check) => {
 					if(check){
-						return res.status(200).send({user});
+						//Checamos si gettoken, si, trae y genera el token, no, manda el user
+						if(params.gettoken){
+							return res.status(200).send({
+								token: jwt.createToken(user)
+							});
+						}else{
+							return res.status(200).send({user});
+						}
 					}else{
 						return res.status(404).send({message: "El usuario no ha podido logearse correctamente por la contraseña incorrecta"});
 					}
