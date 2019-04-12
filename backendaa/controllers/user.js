@@ -2,6 +2,10 @@
 //Cargamos Modulos
 //bcrypt para cifrar contraseñas
 var bcrypt = require('bcrypt-nodejs');
+//fs para manipular archivos
+var fs = require('fs');
+//para acceder a rutas de nuestro explorador de archivos
+var path = require('path');
 
 //importar servicio de jwt y luego lo ponemos en el metodo login
 var jwt = require('../services/jwt');
@@ -12,7 +16,6 @@ var User = require('../models/user');
 //Acciones
 function pruebas(req, res){
 	res.status(200).send({message: "Probando el controlador en metodo pruebas...", user: req.user});
-
 }
 
 function saveUser(req, res){
@@ -99,9 +102,111 @@ function login(req, res){
 
 }
 
+function updateUser(req, res){
+		//params: son los parametros que llegan por la url
+		var userId = req.params.id;
+		//body: son los datos que llegan por el body o data
+		var update = req.body;
+
+		//req.user.sub viene del payload	
+		if(userId != req.user.sub){
+			return res.status(500).send({message: "No tienes permiso para actualizar el usuario"});
+		}
+		//Podemos poner como tercer parametro new:true para que nos muestre el registro actualizado
+		User.findByIdAndUpdate(userId, update, {new:true}, (err, userUpdated) => {
+			if(err){
+				return res.status(500).send({message: "Error al actualizar el usuario"});
+			}else{
+				if(!userUpdated){
+					return res.status(404).send({message: "No se ha podido actualizar el usuario"});
+				}else{
+					return res.status(200).send({user: userUpdated});
+				}
+			}
+		});
+}
+
+function uploadImageUser(req, res){
+	var userId = req.params.id;
+	var file_name = "No subido..";
+
+	if(req.files){
+		var file_path = req.files.image.path;
+		var file_split = file_path.split('\\');
+		var file_name = file_split[2];
+
+		var ext_file = file_name.split('\.');
+		var file_ext = ext_file[1];
+
+		if(file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'png' || file_ext == 'gif'){
+			//req.user.sub viene del payload	
+			if(userId != req.user.sub){
+				return res.status(500).send({message: "No tienes permiso para actualizar el usuario"});
+			}
+			//Podemos poner como tercer parametro new:true para que nos muestre el registro actualizado
+			User.findByIdAndUpdate(userId, {image: file_name}, {new:true}, (err, userUpdated) => {
+				if(err){
+					return res.status(500).send({message: "Error al actualizar el usuario"});
+				}else{
+					if(!userUpdated){
+						return res.status(404).send({message: "No se ha podido actualizar el usuario"});
+					}else{
+						return res.status(200).send({user: userUpdated, image: file_name});
+					}
+				}
+			});
+		}else{
+			//si tratamos de subir algun archivo que no sea de una imagen que no lo suba
+			fs.unlink(file_path, (err) => {
+				if(err){
+					return res.status(200).send({message: "Extension no es valida y archivo no borrado"});
+				}else{
+					return res.status(200).send({message: "Extension no es valida!"});
+				}
+			});
+		}
+	}else{
+		return res.status(200).send({message: "No se ha subido archivo!"});
+	}
+}
+
+function getImageFile(req, res){
+	var imageFile = req.params.imageFile;
+	//Vamos a acceder a la ruta fisica de la imagen, la ruta del disco duro
+	var path_file = './uploads/users/'+imageFile;
+
+	//Ahora comprobamos si el archivo existe
+	fs.exists(path_file, (exists) => {
+		if(exists){
+			res.sendFile(path.resolve(path_file));
+		}else{
+			return res.status(404).send({message: "La imagen no existe"});
+		}
+	});
+}
+
+function getKeepers(req, res){
+	User.find({role: 'ROLE_ADMIN'}).exec((err, users) => {
+		if(err){
+			return res.status(500).send({message: "Error en la peticion"});
+		}else{
+			if(!users){
+				return res.status(404).send({message: "Metodo Get Keepers"});
+			}else{
+				return res.status(200).send({users});
+			}
+		}
+	});
+
+}
+
 //Exportamos acciones
 module.exports = {
 	pruebas,
 	saveUser,
-	login
+	login,
+	updateUser,
+	uploadImageUser,
+	getImageFile,
+	getKeepers
 };
