@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 //Importar nuestros modulos - Importante en imports: ponerlos antes del AppRoutingModule
@@ -17,6 +18,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AnimalsComponent } from './components/animals/animals.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { KeeperComponent } from './components/keeper/keeper.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +30,16 @@ import { KeeperComponent } from './components/keeper/keeper.component';
     HomeComponent,
     AnimalsComponent,
     ContactComponent,
-    KeeperComponent
+    KeeperComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule,
     FormsModule,
     EditorModule,
+    HttpClientModule,
+    HttpModule,
     ModuloEmailModule,
     AdminModule,
     AppRoutingModule

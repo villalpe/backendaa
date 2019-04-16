@@ -14,7 +14,15 @@
 				<li><a [routerLink]="['/animals']" [routerLinkActive]="['actived']"> <span class="glyphicon glyphicon-star"></span>Animals</a></li>
 				<li><a [routerLink]="['/contact']" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-picture"></span>Contact</a></li>
 				<li><a [routerLink]="['/keeper']" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-user"></span>Keeper</a></li>
-			</ul>			
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a [routerLink]="['/register']" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-user"></span>Registro</a>
+				</li>
+				<li>
+					<a [routerLink]="['/login']" [routerLinkActive]="['actived']"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+				</li>	
+			</ul>
 		</div>
 	</nav>
 </div>
