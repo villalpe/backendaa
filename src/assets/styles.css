@@ -53,3 +53,8 @@ body > app-root > div > nav > div > ul > li{
 	background: #ccc;
 	border: 1px solid black;
 }
+
+.titulo{
+	margin-left: 15px;
+	margin-bottom: 15px;
+}

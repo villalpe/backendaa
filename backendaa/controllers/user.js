@@ -79,6 +79,9 @@ function login(req, res){
 			return res.status(500).send({message: "Error al comprobar si existe usuario"});
 		}else{
 			if(user){
+				console.log(password);
+				console.log(user.password);
+				console.log(params.gettoken);
 				bcrypt.compare(password, user.password, (err, check) => {
 					if(check){
 						//Checamos si gettoken, si, trae y genera el token, no, manda el user
