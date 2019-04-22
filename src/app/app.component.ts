@@ -1,27 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { UserService } from './services/user1.service';
+import { GLOBAL } from './services/global';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  providers: [UserService]
 })
-export class AppComponent {
-  title = 'NGZOO';
+export class AppComponent implements OnInit, DoCheck{
+  public title: string;
+  public identity;
+  public url: string;
+  
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _userService: UserService
+    ){
+    this.title = 'NGZOO';
+    this.url = GLOBAL.url;
+  }
 
   ngOnInit(){
-  //Vamos a recoger la variable que esta en el localStorage
-  	//this.emailContacto = localStorage.getItem('emailContacto')
-	//console.log(localStorage.getItem('emailContacto'));
+    this.identity = this._userService.getIdentity();
   }
-  //Este metodo se lanza despues del OnInit y despues tambien del OnChanges. Cada vez que hay un cambio en angular
-  /*ngDoCheck(){
-  	//Al poner el getItme del localStorage en este metodo actualizamos el valor que damos en Contact
-  	this.emailContacto = localStorage.getItem('emailContacto')
+  ngDoCheck(){
+    this.identity = this._userService.getIdentity();
   }
 
-  delEmailContacto(){
-  	localStorage.removeItem('emailContacto');
-  	localStorage.clear();
-  	this.emailContacto = null;
-  }*/
+  logout(){
+    localStorage.clear();
+    this.identity = null;
+    this._router.navigate(['/']);
+  }
+ 
 }

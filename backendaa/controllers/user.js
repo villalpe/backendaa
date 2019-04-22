@@ -79,9 +79,6 @@ function login(req, res){
 			return res.status(500).send({message: "Error al comprobar si existe usuario"});
 		}else{
 			if(user){
-				console.log(password);
-				console.log(user.password);
-				console.log(params.gettoken);
 				bcrypt.compare(password, user.password, (err, check) => {
 					if(check){
 						//Checamos si gettoken, si, trae y genera el token, no, manda el user
@@ -97,7 +94,7 @@ function login(req, res){
 					}
 				});
 			}else{
-				return res.status(404).send({message: "El usuario no existe en la BD"});
+				return res.status(404).send({message: "El usuario con ese correo no existe en la BD"});
 			}
 		}
 
@@ -110,6 +107,8 @@ function updateUser(req, res){
 		var userId = req.params.id;
 		//body: son los datos que llegan por el body o data
 		var update = req.body;
+		//Queremos borrar la contraseña password porque no la vamos a cambiar al actualizar
+		delete update.password;
 
 		//req.user.sub viene del payload	
 		if(userId != req.user.sub){
@@ -147,7 +146,7 @@ function uploadImageUser(req, res){
 				return res.status(500).send({message: "No tienes permiso para actualizar el usuario"});
 			}
 			//Podemos poner como tercer parametro new:true para que nos muestre el registro actualizado
-			User.findByIdAndUpdate(userId, {image: file_name}, {new:true}, (err, userUpdated) => {
+			User.findOneAndUpdate(userId, {image: file_name}, {new:true}, (err, userUpdated) => {
 				if(err){
 					return res.status(500).send({message: "Error al actualizar el usuario"});
 				}else{

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public user: User;
   public identity;
   public token;
+  public status: string;
   constructor(
   		private _route: ActivatedRoute,
   		private _router: Router,
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   	console.log('login.component Cargado');
+    console.log(this._userService.getIdentity());
+    console.log(this._userService.getToken());
   }
 
   onSubmit(){
@@ -33,13 +36,15 @@ export class LoginComponent implements OnInit {
     this._userService.signup(this.user).subscribe(
       response => {
         this.identity = response.user;
-
         if(!this.identity || !this.identity._id){
-          alert("El usuario no se ha logueado correctamente")
+          alert("El usuario no se ha logueado correctamente");
         }else{
-          //Mostrar el token
-          console.log(this.identity);
-
+          //Para no enviar el password por la red
+          this.identity.password = '';
+          //Aqui vamos a guardar el this.identity en el localStorage para que persista y 
+          //usamos JSON.stringify porque this.identity es un objeto que debemos convertir
+          //a string
+          localStorage.setItem('identity', JSON.stringify(this.identity));
           //conseguir el token
           this._userService.signup(this.user, 'true').subscribe(
             response => {
@@ -48,9 +53,11 @@ export class LoginComponent implements OnInit {
                 if(this.token.length <= 0){
                   alert("El token no se ha generado")
                 }else{
-
-                  //Mostrar el token
-                  console.log(this.token);
+                  //Tambien vamos a guardar el token en localStorage pero no usamos JSON.stringify ya que
+                  //el token es un string
+                  localStorage.setItem('token', this.token);
+                  this.status = 'success';
+                  this._router.navigate(['/']);
                 }
               },
               error => {
@@ -61,7 +68,12 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        console.log(<any>error);
+        var errorMessage = <any>error;
+        //Si hay mensaje de error hacemos un JSON.parse para convertir el mensaje en objeto JSON
+        if(!errorMessage != null){
+          var body = JSON.parse(error._body);
+          this.status = 'error';
+        }
       }
      );
   }

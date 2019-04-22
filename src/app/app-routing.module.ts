@@ -10,6 +10,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { KeeperComponent } from './components/keeper/keeper.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 const routes: Routes = [
 	{path: '', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
 	{path: 'keeper', component: KeeperComponent},
 	{path: 'register', component: RegisterComponent},
 	{path: 'login', component: LoginComponent},
+	{path: 'mis-datos', component: UserEditComponent},
 	{path: '**', component: ErrorComponent}
 ];
 
