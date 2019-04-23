@@ -6,10 +6,13 @@ import { AddComponent } from './components/add/add.component';
 import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
 //import { ErrorComponent } from './components/error/error.component';
+//Guards
+import { AdminGuard } from '../services/admin.guard';
 
 const adminRoutes: Routes = [
 	{	path: 'admin-panel', 
-		component: MainComponent, 
+		component: MainComponent,
+		canActivate: [AdminGuard],
 		children: [
 			{path: '', redirectTo: 'listado', pathMatch: 'full'},
 			{path: 'listado', component: ListComponent},

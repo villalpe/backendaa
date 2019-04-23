@@ -13,6 +13,10 @@ import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ErrorComponent } from './components/error/error.component';
 
+//Servicios
+import { UserService } from '../services/user1.service';
+import { AdminGuard } from '../services/admin.guard';
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -28,7 +32,10 @@ import { ErrorComponent } from './components/error/error.component';
     AdminRoutingModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    AdminGuard
+  ],
   exports: [  
     MainComponent,
     AddComponent,
