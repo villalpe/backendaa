@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { HttpModule} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
@@ -26,6 +26,10 @@ export class AnimalService {
 
 		return this._http.post(this.url+'animal', params, {headers: headers})
 					.map(res => res.json());
+	}
+
+	getAnimals(){
+		return this._http.get(this.url+'get-animals').map(res => res.json());
 	}
 
 }

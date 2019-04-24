@@ -79,3 +79,31 @@ body > app-root > div > nav > div > ul > li{
 .pointer{
 	cursor: pointer;
 }
+
+/*Curso Bootstrap*/
+.borde{
+	background-color: grey;
+	height: 200px;
+}
+
+.borde1{
+	background-color: aquamarine;
+	text-align: center;
+	height: 50px;
+}
+
+.borde2{
+	height: 50px;
+	text-align: center;
+	background-color: olivedrab;
+}
+
+.borde3{
+	height: 50px;
+	text-align: center;
+	background-color: orangered;
+}
+
+.border{
+	border: 1px solid black;
+}
