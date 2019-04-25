@@ -25,7 +25,30 @@ export class AnimalDetailComponent implements OnInit {
    	 }
 
   ngOnInit() {
-  	console.log('animal-detail component cargado')
+  	console.log('animal-detail component cargado');
+    this.getAnimal();
+  }
+
+  getAnimal() {
+    this._route.params.forEach((params: Params) => {
+      let id = params['id'];
+
+      this._animalService.getAnimal(id).subscribe(
+          response => {
+            if(!response.animal){
+                this._router.navigate(['/home']);
+              }else{
+                this.animal = response.animal;
+              }
+          },
+          error => {
+            this._router.navigate(['/home']);
+            console.log(<any>error);
+          }
+        );
+
+    });
+
   }
 
 }

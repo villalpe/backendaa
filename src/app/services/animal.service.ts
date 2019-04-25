@@ -32,4 +32,8 @@ export class AnimalService {
 		return this._http.get(this.url+'get-animals').map(res => res.json());
 	}
 
+	getAnimal(id){
+		return this._http.get(this.url+'get-animal/'+id).map(res => res.json());
+	}
+
 }

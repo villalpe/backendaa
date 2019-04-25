@@ -1,5 +1,7 @@
+/*@import "~node_modules/bootstrap/dist/css/bootstrap.css";*/
+
 .navbar-nav{
-	flex-direction: row;
+	flex-direction: row !important;
 }
 
 body > app-root > div > nav > div > ul > li{
@@ -104,6 +106,8 @@ body > app-root > div > nav > div > ul > li{
 	background-color: orangered;
 }
 
-.border{
-	border: 1px solid black;
+.borde4{
+	height: 50px;
+	text-align: center;
+	background-color: green;
 }
