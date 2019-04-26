@@ -30,6 +30,12 @@
 	</span>
 </p>
 
+<div *ngIf="is_edit && animal.image">
+	<div class="image_for_edit">
+		<img src="{{url + 'get-image-file-animal/'+ animal.image}}" />		
+	</div>
+</div>
+
 <p>
 	<label>Subir foto Animal</label>
 	<input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)"/>
