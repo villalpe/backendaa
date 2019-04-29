@@ -47,4 +47,18 @@ export class AnimalService {
 						.map(res => res.json());
 	}
 
+	deleteAnimal(token, id){
+		let headers = new Headers({
+			'Content-Type': 'application/json',
+			'Authorization': token
+		});
+		//Utilizamos RequestOptions para traer todas las opciones de cabeceras.
+		let options = new RequestOptions({headers: headers});
+
+		return this._http.delete(this.url+'delete-animal/'+id, options)
+						.map(res => res.json());
+	}
+
+
+
 }
