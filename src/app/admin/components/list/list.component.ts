@@ -1,4 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
+declare let $: any;
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Animal } from '../../../models/animal';
@@ -11,12 +12,13 @@ import { UserService } from '../../../services/user1.service';
   templateUrl: './list.component.html',
   providers: [AnimalService, UserService]
 })
-export class ListComponent implements OnInit, DoCheck {
+export class ListComponent implements OnInit {
    public title: string;
    public url: string;
    public status: string;
    public animals: Animal[];
    public token;
+   public busqueda;
 
    constructor(
    	  private _route: ActivatedRoute,
@@ -31,46 +33,41 @@ export class ListComponent implements OnInit, DoCheck {
    }
 
    ngOnInit(){
-		console.log('componente.listado funciona correctamente');
-		this._animalService.getAnimals().subscribe(
-			response => {
-				if(!response.animals){
-
-				}else{
-					this.animals = response.animals;	
-				}
-			},
-			error => {
-				console.log(<any>error);
-			}
-		);
+     this.getAnimals(); 
    }
 
-   ngDoCheck(){
+    getAnimals(){
+      console.log('componente.listado funciona correctamente');
+      this._animalService.getAnimals().subscribe(
+        response => {
+          if(!response.animals){
 
+          }else{
+            this.animals = response.animals;  
+          }
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
    }
 
-   deleteAnimal(){
-    console.log("Borrar animal");
-    /*var id = this.animals._id;
+   deleteAnimal(id){
+    $('#myModal-'+id).modal('hide');
+    console.log("Id desde el component.listAnimal: "+id);
     this._animalService.deleteAnimal(this.token, id).subscribe(
       response => {
+        console.log(response.animal);
         if(!response.animal){
-          this.status = 'error';
-          console.log(response.animal);
+          alert('Error en el servidor');
         }else{
-          console.log(response.animal);
-          this.status = 'success';
+          this.getAnimals();
         }
       },
       error => {
-        var errorMessage = <any>error;
-
-        if(errorMessage != null){
-          this.status = 'error';
-        }
+          alert('Error en el servidor');
       }
-    );*/
+    );
    }
  
 }

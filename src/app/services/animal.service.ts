@@ -54,6 +54,7 @@ export class AnimalService {
 		});
 		//Utilizamos RequestOptions para traer todas las opciones de cabeceras.
 		let options = new RequestOptions({headers: headers});
+		console.log("Id desde el animal.service: "+id);
 
 		return this._http.delete(this.url+'delete-animal/'+id, options)
 						.map(res => res.json());

@@ -55,6 +55,19 @@ body > app-root > div > nav > div > ul > li{
 	height: 55px;
 }
 
+.animal-image-mask,
+.keepers-image-mask {
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+}
+
+.animal-image-mask img,
+.keepers-image-mask img {
+	max-height: 200px;
+}
+
+
 .boton_transiciones{
 	padding: 10px;
 	background: red;

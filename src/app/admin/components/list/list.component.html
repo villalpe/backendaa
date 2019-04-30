@@ -1,5 +1,15 @@
-<div class="col-lg-12">
+<div class="col-lg-12 display-5">
 	<h3>{{title}}</h3>
+	<div class="row">
+		<div class="col-lg-1">Buscar:</div>		
+		<div class="col-lg-3">
+			<input type="text" [(ngModel)]="busqueda" />
+		</div>
+		<div class="label label-success" *ngIf="busqueda">
+			Estas buscando: {{busqueda}}
+		</div>
+	</div>
+	<br/>
 	<table class="table table-hover">
 		<thead class="thead-default">
 			<tr>
@@ -9,7 +19,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let animal of animals">
+			<tr *ngFor="let animal of animals | search: busqueda">
 				<td>{{animal.name}}</td>
 				<td>{{animal.year}}</td>
 				<td>
@@ -21,26 +31,27 @@
 						<span class="glyphicon glyphicon-pencil"></span>
 						Editar
 					</a>
-					<a href="#myModal" role="button" data-toggle="modal" class="btn btn-sm btn-danger">
+					<a href="#myModal-{{animal._id}}" role="button" data-toggle="modal" class="btn btn-sm btn-danger">
 						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 						Eliminar
 					</a>
 
 					<!-- Modal HTML -->
-					<div id="myModal" class="modal">
+					<div id="myModal-{{animal._id}}" class="modal">
 					    <div class="modal-dialog">
 						    <div class="modal-content">
 						        <div class="modal-header">
-						            <h5 class="modal-title">Confirmation</h5>
-						            <button type="button" class="close" data-dismiss="modal">&times;</button>                
+						            <h5 class="modal-title">Estas seguro?</h5>
+						            <button type="button" class="close" data-dismiss="modal">&times;</button>               
 						        </div>
 						        <div class="modal-body">
-						            <p>Do you want to save changes to this document before closing?</p>
-						            <p class="text-secondary"><small>If you don't save, your changes will be lost.</small></p>
+						            <p>Seguro que quieres eliminar este animal <strong>{{animal.name}}</strong>?</p>
+   						            <p>Seguro que quieres eliminar este animal <strong>{{animal._id}}</strong>?</p>
+						            <p class="text-secondary"><small>Si borras este animal no podras recuperarlo.</small></p>
 						        </div>
 						        <div class="modal-footer">
-						            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-						            <button type="button" class="btn btn-primary">Save changes</button>
+						            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+						            <button type="button" class="btn btn-danger" (click)="deleteAnimal(animal._id)">Borrar</button>
 						        </div>
 						    </div>
 						</div>
@@ -51,6 +62,3 @@
 	</table>
 </div>
 
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRV align-self-endbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

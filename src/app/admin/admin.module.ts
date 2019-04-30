@@ -16,6 +16,7 @@ import { ErrorComponent } from './components/error/error.component';
 //Servicios
 import { UserService } from '../services/user1.service';
 import { AdminGuard } from '../services/admin.guard';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminGuard } from '../services/admin.guard';
     AddComponent,
     ListComponent,
     EditComponent,
-    ErrorComponent
+    ErrorComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
